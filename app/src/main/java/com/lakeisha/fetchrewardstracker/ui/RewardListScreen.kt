@@ -87,55 +87,56 @@ fun RewardListScreen(viewModel: RewardViewModel) {
             }
         }
     }
+}
 
-    @Composable
-    fun RewardCard(
-        reward: RewardItem,
-        onToggle: () -> Unit,
-        onDelete: () -> Unit
+@Composable
+fun RewardCard(
+    reward: RewardItem,
+    onToggle: () -> Unit,
+    onDelete: () -> Unit
+) {
+    Card(
+        modifier = Modifier
+            .fillMaxWidth()
+            .padding(vertical = 6.dp)
     ) {
-        Card(
+        Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .padding(vertical = 6.dp)
         ) {
             Column(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = 6.dp)
+                modifier = Modifier.padding(12.dp)
             ) {
-                Column(
-                    modifier = Modifier.padding(12.dp)
-                ) {
-                    Text(
-                        text = reward.title,
-                        style = MaterialTheme.typography.titleMedium
-                    )
+                Text(
+                    text = reward.title,
+                    style = MaterialTheme.typography.titleMedium
+                )
 
-                    Text(text = "${reward.points} points")
+                Text(text = "${reward.points} points")
 
-                    Text(
-                        text = if (reward.isCompleted) "Completed" else "Not Completed"
-                    )
+                Text(
+                    text = if (reward.isCompleted) "Completed" else "Not Completed"
+                )
 
-                    Spacer(modifier = Modifier.height(8.dp))
+                Spacer(modifier = Modifier.height(8.dp))
 
-                    Row {
-                        Button(onClick = onToggle) {
-                            Text(
-                                if (reward.isCompleted) "Undo" else "Complete"
-                            )
-                        }
+                Row {
+                    Button(onClick = onToggle) {
+                        Text(
+                            if (reward.isCompleted) "Undo" else "Complete"
+                        )
+                    }
 
-                        Spacer(modifier = Modifier.width(8.dp))
+                    Spacer(modifier = Modifier.width(8.dp))
 
-                        OutlinedButton(onClick = onDelete) {
-                            Text("Delete")
-                        }
+                    OutlinedButton(onClick = onDelete) {
+                        Text("Delete")
                     }
                 }
             }
         }
     }
-
 }
+
+
