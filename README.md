@@ -42,6 +42,18 @@ Jetpack Compose, MVVM, Room, StateFlow, and modern mobile architecture. This
 project also demonstrates debugging, local persistence, and user-centered 
 mobile development.
 
+
+## Screenshots 
+### Home Screen
+![Home Screen](screenshots/home.png)
+
+### Rewards Added
+![Rewards Added](screenshots/rewards-added.png)
+
+### Completed Points
+![Completed Points](screenshots/completed-points.png)
+
+
 ## Future Improvements
 -Add Navigation Compose
 -Add unit tests
@@ -49,3 +61,4 @@ mobile development.
 -Improve styling and theme
 -Add filtering for completed and active rewards
 -Add reward categories
+
