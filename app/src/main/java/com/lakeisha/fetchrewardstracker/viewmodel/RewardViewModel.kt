@@ -1,19 +1,15 @@
 package com.lakeisha.fetchrewardstracker.viewmodel
 
-import androidx.compose.runtime.mutableStateListOf
-import androidx.compose.runtime.mutableStateOf
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.lakeisha.fetchrewardstracker.data.RewardItem
 import com.lakeisha.fetchrewardstracker.data.RewardRepository
 import kotlinx.coroutines.flow.SharingStarted
-import kotlinx.coroutines.flow.WhileSubscribed
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 
 class RewardViewModel(
     private val repository: RewardRepository
-) : ViewModel() {
+) : androidx.lifecycle.ViewModel() {
     val rewards = repository.allRewards.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(5000),

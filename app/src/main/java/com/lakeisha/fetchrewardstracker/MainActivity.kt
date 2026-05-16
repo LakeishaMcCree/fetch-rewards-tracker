@@ -4,14 +4,12 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import androidx.lifecycle.viewmodel.compose.viewModel
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.lakeisha.fetchrewardstracker.data.RewardDatabase
+import com.lakeisha.fetchrewardstracker.data.RewardRepository
 import com.lakeisha.fetchrewardstracker.ui.RewardListScreen
 import com.lakeisha.fetchrewardstracker.ui.theme.FetchRewardsTrackerTheme
 import com.lakeisha.fetchrewardstracker.viewmodel.RewardViewModel
@@ -22,8 +20,10 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             FetchRewardsTrackerTheme {
-                val rewardViewModel: RewardViewModel = viewModel()
-                RewardListScreen(viewModel = rewardViewModel)
+                val database = RewardDatabase.getDatabase(applicationContext)
+                val repository = RewardRepository(database.rewardDao())
+                val viewModel = RewardViewModel(repository)
+                RewardListScreen(viewModel = viewModel)
                 }
             }
         }
