@@ -13,6 +13,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.collectAsState
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import com.lakeisha.fetchrewardstracker.data.RewardItem
@@ -24,6 +26,7 @@ fun RewardListScreen(viewModel: RewardViewModel) {
     var pointsText by remember { mutableStateOf("") }
 
     val totalPoints = viewModel.totalCompletedPoints()
+    val rewards by viewModel.rewards.collectAsState()
 
     Column(
         modifier = Modifier.Companion
@@ -78,11 +81,11 @@ fun RewardListScreen(viewModel: RewardViewModel) {
         Spacer(modifier = Modifier.height(16.dp))
 
         LazyColumn {
-            items(viewModel.rewards) { reward ->
+            items(rewards) { reward ->
                 RewardCard(
                     reward = reward,
-                    onToggle = { viewModel.toggleReward(reward.id) },
-                    onDelete = { viewModel.deleteReward(reward.id)}
+                    onToggle = { viewModel.toggleReward(reward) },
+                    onDelete = { viewModel.deleteReward(reward)}
                 )
             }
         }
